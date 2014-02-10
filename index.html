@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>test</title>
+  </head>
+  <body>
+    <main>
+      <pre></pre>
+    </main>
+  </body>
+  <script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+  <script src='index.js'></script>
+  <script>
+    $('main pre').html(
+      JSON.stringify(owaspPassStrength.test('this is a pasord1!'))
+    );
+  </script>
+</html>
