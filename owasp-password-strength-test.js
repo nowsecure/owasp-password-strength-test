@@ -37,7 +37,14 @@
         if (password.length > exports.configs.maxLength) {
           return 'The password must be fewer than ' + exports.configs.maxLength + ' characters.';
         }
-      }
+      },
+
+      // forbid repeating characters
+      function(password) {
+        if (/(.)\1{2,}/.test(password)) {
+          return 'The password may not contain sequences of three or more repeated characters.';
+        }
+      },
     ],
 
     // An array of optional tests. These tests are "optional" in two senses:
@@ -76,13 +83,6 @@
       function(password) {
         if (!/[^A-Za-z0-9 ]/.test(password)) {
           return 'The password must contain at least one special character.';
-        }
-      },
-
-      // forbid repeating characters
-      function(password) {
-        if (/(.)\1{2,}/.test(password)) {
-          return 'The password may not contain sequences of three or more repeated characters.';
         }
       },
     ],

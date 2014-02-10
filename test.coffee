@@ -6,38 +6,54 @@ describe 'passwords:', ->
 
   describe 'required tests:', ->
     it 'minLength should be enforced', ->
-      owasp.test( 'small').strong.should.be.false
+      result = owasp.test( 'L0^eSex')
+      result.strong.should.be.false
+      result.errors.should.have.length 1
 
     it 'maxLength should be enforced', ->
       password = ''
-      password += 'a' for x in [1..200]
-      owasp.test(password).strong.should.be.false
-
-  describe 'optional tests:', ->
-    owasp.config minOptionalTestsToPass: 5
-
-    it 'valid passwords should be recognized as such', ->
-      owasp.test('L0veSexSecre+God').strong.should.be.true
-
-    it 'at least one lowercase character should be required', ->
-      owasp.test('L0VESEXSECRE+GOD').strong.should.be.false
-
-    it 'at least one uppercase character should be required', ->
-      owasp.test('l0vesexsecre+god').strong.should.be.false
-
-    it 'at least one number should be required', ->
-      owasp.test('LoveSexSecre+God').strong.should.be.false
-
-    it 'at least one special character should be required', ->
-      owasp.test('L0veSexSecretGod').strong.should.be.false
+      password += 'abc' for x in [1..50]
+      result = owasp.test(password)
+      result.strong.should.be.false
+      result.errors.should.have.length 1
 
     it 'repeating characters (3 times or more) should be forbidden', ->
-      owasp.test('L0veSexxxSecre+God').strong.should.be.false
+      result = owasp.test('L0veSexxxSecre+God')
+      result.strong.should.be.false
+      result.errors.should.have.length 1
+
+  describe 'optional tests:', ->
+    it 'valid passwords should be recognized as such', ->
+      result = owasp.test('L0veSexSecre+God')
+      result.strong.should.be.true
+      result.errors.should.be.empty
+
+    it 'at least one lowercase character should be required', ->
+      result = owasp.test('L0VESEXSECRE+GOD')
+      result.strong.should.be.false
+      result.errors.should.have.length 1
+
+    it 'at least one uppercase character should be required', ->
+      result = owasp.test('l0vesexsecre+god')
+      result.strong.should.be.false
+      result.errors.should.have.length 1
+
+    it 'at least one number should be required', ->
+      result = owasp.test('LoveSexSecre+God')
+      result.strong.should.be.false
+      result.errors.should.have.length 1
+
+    it 'at least one special character should be required', ->
+      result = owasp.test('L0veSexSecretGod')
+      result.strong.should.be.false
+      result.errors.should.have.length 1
 
 
 describe 'passphrases:', ->
   it 'should not be subject to optional tests by default', ->
-    owasp.test('Hack the planet! Hack the planet!').strong.should.be.true
+    result = owasp.test('Hack the planet! Hack the planet!')
+    result.strong.should.be.true
+    result.errors.should.be.empty
 
   it 'should be subject to optional tests per configuration', ->
     owasp.config allowPassphrases: false
