@@ -29,10 +29,10 @@ Features
 --------
 This module is built upon the following beliefs:
 
-1. [Passphrases are better than passwords][xkcd]
+1. [Passphrases are better than passwords][xkcd].
 
 2. Passwords should be subject to stricter complexity requirements than
-   passphrases
+   passphrases.
 
 Thus, the module:
 
@@ -48,7 +48,7 @@ Thus, the module:
   length is greater than or equal to 20 characters.")
 
 - **can be arbitrarily extended** as-needed with additional required and
-  optional tests
+  optional tests.
 
 
 Usage
@@ -102,19 +102,19 @@ The returned value will take this shape when the password is valid:
 
 Whereby:
 
-- `errors` is an `array` of `string`s of error messages associated with the failed
-  tests
+- `errors` is an `array` of `string`s of error messages associated with the
+  failed tests.
 
 - `isPassphrase` is a `boolean` indicating whether or not the password was
-  considered to be a passphrase
+  considered to be a passphrase.
 
 - `strong` is a `boolean` indicating whether or not the user's password
-  satisfied the strength requirements
+  satisfied the strength requirements.
 
-- `optionalTestsPassed` is `number` indicating how many of the optional tests
+- `optionalTestsPassed` is a `number` indicating how many of the optional tests
   were passed. In order for the password to be considered "strong", it (by
   default) must either be a passphrase, or must pass a number of optional tests
-  that is equal to or greater than `configs.minOptionalTestsToPass`
+  that is equal to or greater than `configs.minOptionalTestsToPass`.
 
 
 Configuring
