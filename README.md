@@ -134,8 +134,7 @@ owasp.config({
   minPhraseLength        : 20,
   minOptionalTestsToPass : 4,
 });
-
-
+```
 
 Whereby:
 
@@ -156,6 +155,7 @@ Whereby:
   password must pass in order to be considered "strong". By default (per the
   OWASP guidelines), four optional complexity tests are made, and a password
   must pass at least three of them in order to be considered "strong". 
+
 
 Extending
 ---------
