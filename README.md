@@ -74,7 +74,7 @@ var result = owaspPasswordStrenghTest.test('correct horse battery staple');
 
 The returned value will take this shape when the password is valid:
 
-```json
+```javascript
 {
   errors              : [],
   isPassphrase        : false,
@@ -86,7 +86,7 @@ The returned value will take this shape when the password is valid:
 
 ... and will take this shape when the password is invalid:
 
-```json
+```javascript
 {
   errors: [
     'The password must be at least 10 characters long.',
