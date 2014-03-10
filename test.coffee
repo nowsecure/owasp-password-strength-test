@@ -9,6 +9,7 @@ describe 'passwords:', ->
       result = owasp.test( 'L0^eSex')
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(0)
 
     it 'maxLength should be enforced', ->
       password = ''
@@ -16,37 +17,45 @@ describe 'passwords:', ->
       result = owasp.test(password)
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(1)
 
     it 'repeating characters (3 times or more) should be forbidden', ->
       result = owasp.test('L0veSexxxSecre+God')
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(2)
 
   describe 'optional tests:', ->
     it 'valid passwords should be recognized as such', ->
       result = owasp.test('L0veSexSecre+God')
       result.strong.should.be.true
       result.errors.should.be.empty
+      result.failedTests.should.be.empty
+      result.passedTests.should.eql([0, 1, 2, 3, 4, 5, 6])
 
     it 'at least one lowercase character should be required', ->
       result = owasp.test('L0VESEXSECRE+GOD')
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(3)
 
     it 'at least one uppercase character should be required', ->
       result = owasp.test('l0vesexsecre+god')
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(4)
 
     it 'at least one number should be required', ->
       result = owasp.test('LoveSexSecre+God')
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(5)
 
     it 'at least one special character should be required', ->
       result = owasp.test('L0veSexSecretGod')
       result.strong.should.be.false
       result.errors.should.have.length 1
+      result.failedTests.should.containEql(6)
 
 
 describe 'passphrases:', ->

@@ -77,6 +77,8 @@ The returned value will take this shape when the password is valid:
 ```javascript
 {
   errors              : [],
+  failedTests         : [],
+  passedTests         : [ 0, 1, 2, 3, 4, 5, 6 ],
   isPassphrase        : false,
   strong              : true,
   optionalTestsPassed : 4
@@ -89,14 +91,16 @@ The returned value will take this shape when the password is valid:
 ```javascript
 {
   errors: [
-    'The password must be at least 10 characters long.',
-    'The password must contain at least one uppercase letter.',
-    'The password must contain at least one number.',
-    'The password must contain at least one special character.' 
-  ],
-  isPassphrase        : false,
-  strong              : false,
-  optionalTestsPassed : 1
+      'The password must be at least 10 characters long.',
+      'The password must contain at least one uppercase letter.',
+      'The password must contain at least one number.',
+      'The password must contain at least one special character.'
+    ],
+    failedTests         : [ 0, 4, 5, 6 ],
+    passedTests         : [ 1, 2, 3 ],
+    isPassphrase        : false,
+    strong              : false,
+    optionalTestsPassed : 1
 }
 ```
 
@@ -104,6 +108,12 @@ Whereby:
 
 - `errors` is an `array` of `string`s of error messages associated with the
   failed tests.
+
+- `failedTests` enumerates which tests have failed, beginning from 0 with the
+  first required test
+
+- `passedTests` enumerates which tests have succeeded, beginning from 0 with
+  the first required test
 
 - `isPassphrase` is a `boolean` indicating whether or not the password was
   considered to be a passphrase.

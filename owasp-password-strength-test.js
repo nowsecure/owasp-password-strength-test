@@ -94,18 +94,25 @@
     // create an object to store the test results
     var result = {
       errors              : [],
+      failedTests         : [],
+      passedTests         : [],
       isPassphrase        : false,
       strong              : true,
       optionalTestsPassed : 0,
     };
     
     // Always submit the password/passphrase to the required tests
+    var i = 0;
     this.tests.required.forEach(function(test) {
       var err = test(password);
       if (typeof err === 'string') {
         result.strong = false;
         result.errors.push(err);
+        result.failedTests.push(i);
+      } else {
+        result.passedTests.push(i);
       }
+      i++;
     });
 
     // If configured to allow passphrases, and if the password is of a
@@ -119,13 +126,17 @@
     }
 
     if (!result.isPassphrase) {
+      var j = this.tests.required.length;
       this.tests.optional.forEach(function(test) {
         var err = test(password);
         if (typeof err === 'string') {
           result.errors.push(err);
+          result.failedTests.push(j);
         } else {
           result.optionalTestsPassed++;
+          result.passedTests.push(j);
         }
+        j++;
       });
     }
 
