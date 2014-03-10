@@ -69,7 +69,7 @@ var result = owasp.test('correct horse battery staple');
 ```javascript
 // in the browser, including the script will make a
 // `window.owaspPasswordStrengthTest` object availble.
-var result = owaspPasswordStrenghTest.test('correct horse battery staple');
+var result = owaspPasswordStrengthTest.test('correct horse battery staple');
 ```
 
 The returned value will take this shape when the password is valid:
