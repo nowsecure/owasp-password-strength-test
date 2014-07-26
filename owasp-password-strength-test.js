@@ -1,8 +1,10 @@
-(function(exports) {
+/* globals define */
+(function (root, factory) { if (typeof define === 'function' && define.amd) { define([], factory); } else if (typeof exports === 'object') { module.exports = factory(); } else { root.owaspPasswordStrengthTest = factory(); } }(this, function () {
+  var owasp = {};
 
   // These are configuration settings that will be used when testing password
   // strength
-  exports.configs = {
+  owasp.configs = {
     allowPassphrases       : true,
     maxLength              : 128,
     minLength              : 10,
@@ -11,7 +13,7 @@
   };
 
   // This method makes it more convenient to set config parameters
-  exports.config = function(params) {
+  owasp.config = function(params) {
     for (var prop in params) {
       if (params.hasOwnProperty(prop) && this.configs.hasOwnProperty(prop)) {
         this.configs[prop] = params[prop];
@@ -19,23 +21,23 @@
     }
   };
 
-  // This is an object containing the tests to run against all passwords. 
-  exports.tests = {
+  // This is an object containing the tests to run against all passwords.
+  owasp.tests = {
 
     // An array of required tests. A password *must* pass these tests in order
     // to be considered strong.
     required: [
       // enforce a minimum length
       function(password) {
-        if (password.length < exports.configs.minLength) {
-          return 'The password must be at least ' + exports.configs.minLength + ' characters long.';
+        if (password.length < owasp.configs.minLength) {
+          return 'The password must be at least ' + owasp.configs.minLength + ' characters long.';
         }
       },
-      
+
       // enforce a maximum length
       function(password) {
-        if (password.length > exports.configs.maxLength) {
-          return 'The password must be fewer than ' + exports.configs.maxLength + ' characters.';
+        if (password.length > owasp.configs.maxLength) {
+          return 'The password must be fewer than ' + owasp.configs.maxLength + ' characters.';
         }
       },
 
@@ -89,7 +91,7 @@
   };
 
   // This method tests password strength
-  exports.test = function(password) {
+  owasp.test = function(password) {
 
     // create an object to store the test results
     var result = {
@@ -100,7 +102,7 @@
       strong              : true,
       optionalTestsPassed : 0,
     };
-    
+
     // Always submit the password/passphrase to the required tests
     var i = 0;
     this.tests.required.forEach(function(test) {
@@ -152,4 +154,6 @@
     // return the result
     return result;
   };
-})(typeof exports === 'undefined' ? window.owaspPasswordStrengthTest = {} : exports );
+
+  return owasp;
+}));
