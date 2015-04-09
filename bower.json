@@ -1,7 +1,7 @@
 {
   "name": "owasp-password-strength-test",
   "main": "owasp-password-strength-test.js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "https://github.com/viaforensics/owasp-password-strength-test",
   "authors": [
     "Chris Lane <chris@chris-allen-lane.com>"

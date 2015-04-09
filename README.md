@@ -207,7 +207,7 @@ function(password) {
 
 Testing
 -------
-To run the module's test suite, `cd` into its directory and run `grunt`. You
+To run the module's test suite, `cd` into its directory and run `npm test`. You
 may first need to run `npm install` to install the required development
 dependencies. (These dependencies are **not** required in a production
 environment, and facilitate only unit testing.)

@@ -1,6 +1,6 @@
 {
   "name": "owasp-password-strength-test",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A password-strength tester based upon the OWASP guidelines for enforcing strong passwords.",
   "main": "owasp-password-strength-test.js",
   "devDependencies": {
