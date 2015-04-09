@@ -1,23 +1,24 @@
 {
   "name": "owasp-password-strength-test",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A password-strength tester based upon the OWASP guidelines for enforcing strong passwords.",
   "main": "owasp-password-strength-test.js",
   "devDependencies": {
-    "coffee-script": "1.7.1",
-    "grunt-contrib-jshint": "0.8.0",
-    "grunt-mocha-test": "0.9.0",
+    "jshint": "2.6.3",
+    "mocha": "2.2.4",
     "should": "3.1.2"
   },
-  "directories": {
-    "test": "test"
-  },
+  "jshintConfig": {
+    "expr": true,
+    "laxbreak": true
+   },
   "scripts": {
-    "test": "test"
+    "test": "mocha --recursive --reporter spec test.js",
+    "lint": "jshint *.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/viaforensics/owasp-password-strength-test.git"
+    "url": "https://github.com/nowsecure/owasp-password-strength-test.git"
   },
   "keywords": [
     "security",
