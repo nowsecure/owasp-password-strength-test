@@ -8,6 +8,8 @@ lightweight, extensible, has no dependencies, and can be used on the server
 `owasp-password-strength-test` is not an OWASP project - it is simply based off
 of OWASP research.
 
+[![Build Status](https://travis-ci.org/nowsecure/owasp-password-strength-test.svg)](https://travis-ci.org/nowsecure/owasp-password-strenght-test)
+
 
 Installing
 ----------
