@@ -222,3 +222,4 @@ changes, and then submit a pull-request.
 
 [guidelines]: https://www.owasp.org/index.php/Authentication_Cheat_Sheet#Implement_Proper_Password_Strength_Controls
 [xkcd]: http://xkcd.com/936/ 
+<!-- travis go! -->
