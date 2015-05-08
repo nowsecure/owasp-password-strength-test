@@ -109,6 +109,8 @@
         errors              : [],
         failedTests         : [],
         passedTests         : [],
+        requiredTestErrors  : [],
+        optionalTestErrors  : [],
         isPassphrase        : false,
         strong              : true,
         optionalTestsPassed : 0,
@@ -121,6 +123,7 @@
         if (typeof err === 'string') {
           result.strong = false;
           result.errors.push(err);
+          result.requiredTestErrors.push(err);
           result.failedTests.push(i);
         } else {
           result.passedTests.push(i);
@@ -144,6 +147,7 @@
           var err = test(password);
           if (typeof err === 'string') {
             result.errors.push(err);
+            result.optionalTestErrors.push(err);
             result.failedTests.push(j);
           } else {
             result.optionalTestsPassed++;

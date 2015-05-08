@@ -9,6 +9,7 @@ describe('passwords', function() {
       var result = owasp.test('L0^eSex');
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.requiredTestErrors.should.have.length(1);
       result.failedTests.should.containEql(0);
     });
 
@@ -21,6 +22,7 @@ describe('passwords', function() {
       var result = owasp.test(password);
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.requiredTestErrors.should.have.length(1);
       result.failedTests.should.containEql(1);
     });
 
@@ -28,9 +30,9 @@ describe('passwords', function() {
       var result = owasp.test('L0veSexxxSecre+God');
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.requiredTestErrors.should.have.length(1);
       result.failedTests.should.containEql(2);
     });
-
   });
 
   describe('optional tests', function() {
@@ -39,6 +41,8 @@ describe('passwords', function() {
       var result = owasp.test('L0veSexSecre+God');
       result.strong.should.be.true;
       result.errors.should.be.empty;
+      result.requiredTestErrors.should.be.empty;
+      result.optionalTestErrors.should.be.empty;
       result.failedTests.should.be.empty;
       result.passedTests.should.eql([0, 1, 2, 3, 4, 5, 6]);
     });
@@ -47,6 +51,7 @@ describe('passwords', function() {
       var result = owasp.test('L0VESEXSECRE+GOD');
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.optionalTestErrors.should.have.length(1);
       result.failedTests.should.containEql(3);
     });
 
@@ -54,6 +59,7 @@ describe('passwords', function() {
       var result = owasp.test('l0vesexsecre+god');
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.optionalTestErrors.should.have.length(1);
       result.failedTests.should.containEql(4);
     });
 
@@ -61,6 +67,7 @@ describe('passwords', function() {
       var result = owasp.test('LoveSexSecre+God');
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.optionalTestErrors.should.have.length(1);
       result.failedTests.should.containEql(5);
     });
 
@@ -68,6 +75,7 @@ describe('passwords', function() {
       var result = owasp.test('L0veSexSecretGod');
       result.strong.should.be.false;
       result.errors.should.have.length(1);
+      result.optionalTestErrors.should.have.length(1);
       result.failedTests.should.containEql(6);
     });
 
