@@ -5,7 +5,7 @@ OWASP Password Strength Test
 lightweight, extensible, has no dependencies, and can be used on the server
 (nodejs) or in-browser.
 
-`owasp-password-strength-test` is not an OWASP project - it is simply based off
+`owasp-password-strength-test` is not an OWASP project - it is merely based off
 of OWASP research.
 
 [![Build Status](https://travis-ci.org/nowsecure/owasp-password-strength-test.svg)](https://travis-ci.org/nowsecure/owasp-password-strength-test)
@@ -80,6 +80,8 @@ The returned value will take this shape when the password is valid:
 {
   errors              : [],
   failedTests         : [],
+  requiredTestErrors  : [],
+  optionalTestErrors  : [],
   passedTests         : [ 0, 1, 2, 3, 4, 5, 6 ],
   isPassphrase        : false,
   strong              : true,
@@ -100,6 +102,14 @@ The returned value will take this shape when the password is valid:
     ],
     failedTests         : [ 0, 4, 5, 6 ],
     passedTests         : [ 1, 2, 3 ],
+    requiredTestErrors  : [
+      'The password must be at least 10 characters long.',
+    ],
+    optionalTestErrors  : [
+      'The password must contain at least one uppercase letter.',
+      'The password must contain at least one number.',
+      'The password must contain at least one special character.'
+    ],
     isPassphrase        : false,
     strong              : false,
     optionalTestsPassed : 1
@@ -116,6 +126,12 @@ Whereby:
 
 - `passedTests` enumerates which tests have succeeded, beginning from 0 with
   the first required test
+
+- `requiredTestErrors` is an array containing the error messages of required
+  tests that have failed.
+
+- `optionalTestErrors` is an array containing the error messages of optional
+  tests that have failed.
 
 - `isPassphrase` is a `boolean` indicating whether or not the password was
   considered to be a passphrase.
