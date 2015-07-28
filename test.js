@@ -79,6 +79,24 @@ describe('passwords', function() {
       result.failedTests.should.containEql(6);
     });
 
+    it('the appropriate characters should be recognized as special', function() {
+
+      // see: https://www.owasp.org/index.php/Password_special_characters
+      var specials = ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
+
+      // test each special character
+      specials.forEach(function(special) {
+        var password = ['L0veSex', special, 'SecretGod'].join('');
+        var result   = owasp.test(password);
+        result.strong.should.be.true;
+        result.errors.should.be.empty;
+        result.requiredTestErrors.should.be.empty;
+        result.optionalTestErrors.should.be.empty;
+        result.failedTests.should.be.empty;
+        result.passedTests.should.eql([0, 1, 2, 3, 4, 5, 6]);
+      });
+    });
+
   });
 });
 

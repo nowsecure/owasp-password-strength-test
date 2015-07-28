@@ -96,7 +96,7 @@
 
         // require at least one special character
         function(password) {
-          if (!/[^A-Za-z0-9 ]/.test(password)) {
+          if (!/[^A-Za-z0-9]/.test(password)) {
             return 'The password must contain at least one special character.';
           }
         },
