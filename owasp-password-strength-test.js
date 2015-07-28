@@ -38,6 +38,7 @@
       // An array of required tests. A password *must* pass these tests in order
       // to be considered strong.
       required: [
+
         // enforce a minimum length
         function(password) {
           if (password.length < owasp.configs.minLength) {
@@ -58,6 +59,7 @@
             return 'The password may not contain sequences of three or more repeated characters.';
           }
         },
+
       ],
 
       // An array of optional tests. These tests are "optional" in two senses:
@@ -98,6 +100,7 @@
             return 'The password must contain at least one special character.';
           }
         },
+
       ],
     };
 
