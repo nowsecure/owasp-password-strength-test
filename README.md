@@ -70,7 +70,7 @@ var result = owasp.test('correct horse battery staple');
 ### In-browser ###
 ```javascript
 // in the browser, including the script will make a
-// `window.owaspPasswordStrengthTest` object availble.
+// `window.owaspPasswordStrengthTest` object available.
 var result = owaspPasswordStrengthTest.test('correct horse battery staple');
 ```
 
